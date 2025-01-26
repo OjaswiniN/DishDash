@@ -1,0 +1,41 @@
+server:
+  servlet:
+    context-path: /dishdash
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    health:
+      show-details: always
+
+spring:
+  application:
+    name: dishdash
+
+  jpa:
+    hibernate:
+      ddl-auto: validate # Ensures Flyway manages schema rather than creating table automatically by hibernate
+    show-sql: false  # Optional: Logs SQL queries in the console
+    properties:
+      hibernate:
+        format_sql: false  # Pretty-print SQL logs
+
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    host: localhost
+    database: dishdash
+    username: postgres
+    password: postgres
+    url: jdbc:postgresql://localhost:5432/dishdash
+
+  flyway:
+    enabled: true
+    sql-migration-prefix: V
+    sql-migration-separator: __
+    sql-migration-suffixes: .sql
+
+  redis:
+    port: 6379

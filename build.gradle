@@ -1,0 +1,68 @@
+plugins {
+	id 'java'
+	id 'org.springframework.boot' version '3.4.2'
+	id 'io.spring.dependency-management' version '1.1.7'
+}
+
+group = 'com.dishdash'
+version = '0.0.1-SNAPSHOT'
+
+java {
+	toolchain {
+		languageVersion = JavaLanguageVersion.of(17)
+	}
+}
+
+configurations {
+	compileOnly {
+		extendsFrom annotationProcessor
+	}
+}
+
+repositories {
+	mavenCentral()
+}
+
+ext {
+	modelMapperVersion = "2.3.2"
+    springDataRedisVersion = "3.4.2"
+	jedisVersion = "5.2.0"
+	geohashVersion = "1.4.0"
+	jakartaInjectVersion= "2.0.1"
+}
+
+
+dependencies {
+    //Spring
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+	implementation 'org.springframework.boot:spring-boot-starter-data-jdbc'
+	implementation 'org.springframework.boot:spring-boot-starter-validation'
+	implementation 'org.springframework.boot:spring-boot-starter-actuator'
+
+	// Postgres & flyway
+    runtimeOnly 'org.postgresql:postgresql'
+	implementation 'org.flywaydb:flyway-core'
+	implementation 'org.flywaydb:flyway-database-postgresql'
+
+    // Redis
+    implementation "org.springframework.data:spring-data-redis:${springDataRedisVersion}"
+	implementation "redis.clients:jedis:${jedisVersion}"
+	implementation "ch.hsr:geohash:${geohashVersion}"
+
+	// Lombok
+    compileOnly 'org.projectlombok:lombok'
+	annotationProcessor 'org.projectlombok:lombok'
+
+    // Miscellaneous
+    implementation "org.modelmapper:modelmapper:${modelMapperVersion}"
+	implementation "jakarta.inject:jakarta.inject-api:${jakartaInjectVersion}"
+
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+
+}
+
+tasks.named('test') {
+	useJUnitPlatform()
+}
