@@ -1,10 +1,3 @@
-
-/*
- *
- *  * Copyright (c) Crio.Do 2019. All rights reserved
- *
- */
-
 package com.dishdash.backend.services;
 
 import com.dishdash.backend.dto.GetRestaurantsRequest;
