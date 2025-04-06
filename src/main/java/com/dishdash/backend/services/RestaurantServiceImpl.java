@@ -1,10 +1,3 @@
-
-/*
- *
- *  * Copyright (c) Crio.Do 2019. All rights reserved
- *
- */
-
 package com.dishdash.backend.services;
 
 import com.dishdash.backend.dto.GetRestaurantsRequest;
@@ -28,8 +21,6 @@ public class RestaurantServiceImpl
     private final Double normalHoursServingRadiusInKms = 5.0;
     @Autowired private RestaurantRepositoryService restaurantRepositoryService;
 
-    // TODO: CRIO_TASK_MODULE_RESTAURANTSAPI - Implement findAllRestaurantsCloseby.
-    // Check RestaurantService.java file for the interface contract.
     @Override
     public GetRestaurantsResponse findAllRestaurantsCloseBy(GetRestaurantsRequest getRestaurantsRequest, LocalTime currentTime)
     {
